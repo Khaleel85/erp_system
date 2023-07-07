@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-28 20:06+0300\n"
+"POT-Creation-Date: 2023-07-06 21:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: .\core\admin.py:13
 msgid "Permissions"
 msgstr ""
@@ -26,170 +25,122 @@ msgstr ""
 msgid "Important dates"
 msgstr ""
 
-#: .\core\models.py:53
+#: .\core\models.py:54
 msgid "Email"
 msgstr ""
 
-#: .\core\models.py:54
+#: .\core\models.py:55
 msgid "Name"
 msgstr ""
 
-#: .\core\models.py:55
+#: .\core\models.py:56
 msgid "Birthdate"
 msgstr ""
 
-#: .\core\models.py:57
+#: .\core\models.py:58
 msgid "Gender"
 msgstr ""
 
-#: .\core\models.py:60
+#: .\core\models.py:61
 msgid "Martial Status"
 msgstr ""
 
-#: .\core\models.py:62
+#: .\core\models.py:63
 msgid "Home Address"
 msgstr ""
 
-#: .\core\models.py:64
+#: .\core\models.py:65
 msgid "Mobile Number"
 msgstr ""
 
-#: .\core\models.py:71
+#: .\core\models.py:72
 msgid "Photo"
 msgstr ""
 
-#: .\core\models.py:78
+#: .\core\models.py:79
 msgid "Bank Name"
 msgstr ""
 
-#: .\core\models.py:79
+#: .\core\models.py:80
 msgid "Bank Branch"
 msgstr ""
 
-#: .\core\models.py:80
+#: .\core\models.py:81
 msgid "Bank account name"
 msgstr ""
 
-#: .\core\models.py:81
+#: .\core\models.py:82
 msgid "Bank account number"
 msgstr ""
 
-#: .\core\models.py:84
+#: .\core\models.py:85
 msgid "Start Date"
 msgstr ""
 
-#: .\core\models.py:86
+#: .\core\models.py:87
 msgid "Employment Type"
 msgstr ""
 
-#: .\core\models.py:117
+#: .\core\models.py:105
 msgid "Position"
 msgstr ""
 
-#: .\core\models.py:118
+#: .\core\models.py:106
 msgid "Active Status"
 msgstr ""
 
-#: .\core\models.py:119
+#: .\core\models.py:107
 msgid "Is Staff"
 msgstr ""
 
-#: .\core\models.py:130
+#: .\core\models.py:114
+msgid "User"
+msgstr ""
+
+#: .\core\models.py:115
+msgid "Users"
+msgstr ""
+
+#: .\core\models.py:122
 msgid "Department name"
 msgstr ""
 
-#: .\core\models.py:131
+#: .\core\models.py:123
 msgid "Department Details"
 msgstr ""
 
-#: .\core\models.py:144
+#: .\core\models.py:126
+msgid "Department"
+msgstr ""
+
+#: .\core\models.py:127
+msgid "Departments"
+msgstr ""
+
+#: .\core\models.py:140
 msgid "Branch name"
 msgstr ""
 
-#: .\core\models.py:145
+#: .\core\models.py:141
 msgid "Branch address"
 msgstr ""
 
-#: .\core\models.py:146
+#: .\core\models.py:142
 msgid "Branch details"
 msgstr ""
 
-#: .\core\models.py:194
-msgid "Loan Type"
+#: .\core\models.py:145
+msgid "Branch"
 msgstr ""
 
-#: .\core\models.py:195
-msgid "Loan date"
+#: .\core\models.py:146
+msgid "Branches"
 msgstr ""
 
-#: .\core\models.py:196 .\core\models.py:241
-msgid "Amount"
-msgstr ""
-
-#: .\core\models.py:197
-msgid "Monthly Installment"
-msgstr ""
-
-#: .\core\models.py:198
-msgid "Due"
-msgstr ""
-
-#: .\core\models.py:199
-msgid "Remain"
-msgstr ""
-
-#: .\core\models.py:200
-msgid "Action"
-msgstr ""
-
-#: .\core\models.py:201
-msgid "Loan Status"
-msgstr ""
-
-#: .\core\models.py:202
-msgid "Description"
-msgstr ""
-
-#: .\core\models.py:240
-msgid "Payment day"
-msgstr ""
-
-#: .\core\models.py:242
-msgid "Due date"
-msgstr ""
-
-#: .\core\models.py:278
-msgid "Total loan"
-msgstr ""
-
-#: .\core\models.py:279
-msgid "Deduction"
-msgstr ""
-
-#: .\core\models.py:280
-msgid "Basic Salary"
-msgstr ""
-
-#: .\core\models.py:281
-msgid "Profit"
-msgstr ""
-
-#: .\core\models.py:282
-msgid "Tax"
-msgstr ""
-
-#: .\core\models.py:283
-msgid "Payment date"
-msgstr ""
-
-#: .\core\models.py:284
-msgid "Net Salary"
-msgstr ""
-
-#: .\core\models.py:293
-msgid "Role name"
-msgstr ""
-
-#: .\user\serializers.py:139
+#: .\user\serializers.py:109
 msgid "Unable to authenticate with provided credentials"
+msgstr ""
+
+#: .\user\views.py:83 .\user\views.py:85
+msgid "email or password is invalid"
 msgstr ""

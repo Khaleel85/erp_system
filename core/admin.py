@@ -35,6 +35,9 @@ class UserAdmin(BaseUserAdmin):
                     "password2",
                     "name",
                     "birthdate",
+                    "identification",
+                    "education",
+                    "recruitment",
                     "gender",
                     "marital_status",
                     "home_address",
@@ -49,8 +52,6 @@ class UserAdmin(BaseUserAdmin):
                     "department_name",
                     "branch_name",
                     "position",
-                    "role_name",
-                    "basic_salary",
                     "is_active",
                     "is_staff",
                     "is_superuser",
@@ -65,8 +66,3 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.Department)
 admin.site.register(models.Branch)
-admin.site.register(models.Pay_Roll)
-admin.site.register(models.Loan)
-admin.site.register(models.Payment)
-admin.site.register(models.Permission)
-admin.site.register(models.Role)

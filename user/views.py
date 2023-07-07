@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, viewsets, mixins
 from rest_framework import generics, permissions
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.decorators import action
@@ -17,10 +17,14 @@ from user.serializers import UserSerializer, UserImageSerializer
 from django.utils.translation import gettext_lazy as _
 
 
-class CreateUSerView(generics.CreateAPIView):
-    serializer_class = [UserSerializer]
+class CreateUserView(generics.CreateAPIView):
+    serializer_class = UserSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
+
+    def initial(self, request, *args, **kwargs):
+        super().initial(request, *args, **kwargs)
+        self.action = self.request.method.lower()
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -28,20 +32,16 @@ class CreateUSerView(generics.CreateAPIView):
         serializer.save(
             department=request.data.get("department", []),
             branch=request.data.get("branch", []),
-            basic_salary=request.data.get("basic_salary", []),
-            role=request.data.get("role", []),
         )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def get_object(self):
-        return self.request.user
 
     def get_serializer_class(self):
-        if self.action == "list":
+        """Return the serializer class for request."""
+        if self.action == 'list':
             return UserSerializer
-
-        elif self.action == "upload_image":
+        elif self.action == 'upload_image':
             return UserImageSerializer
 
         return self.serializer_class
@@ -57,7 +57,7 @@ class CreateUSerView(generics.CreateAPIView):
 
 
 class ManagerUserView(generics.RetrieveUpdateAPIView):
-    serializer_class = [UserSerializer]
+    serializer_class = UserSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
@@ -85,9 +85,9 @@ class LoginView(APIView):
         email = request.data["email"]
         password = request.data["password"]
         user = User.objects.filter(email=email).first()
-        if user is None :
+        if user is None:
             raise AuthenticationFailed(_("email or password is invalid"))
-        if  not user.check_password(password):
+        if not user.check_password(password):
             raise AuthenticationFailed(_("email or password is invalid"))
         refresh = RefreshToken.for_user(user)
         response = Response()

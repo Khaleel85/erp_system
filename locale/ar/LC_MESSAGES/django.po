@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-28 20:06+0300\n"
+"POT-Creation-Date: 2023-07-07 13:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,184 +21,152 @@ msgstr ""
 
 #: .\core\admin.py:13
 msgid "Permissions"
-msgstr ""
+msgstr "الصلاحيات"
 
 #: .\core\admin.py:24
 msgid "Important dates"
 msgstr "التواريخ المهمة"
 
-#: .\core\models.py:53
+#: .\core\models.py:66
 msgid "Email"
 msgstr "البريد الالكتروني"
 
-#: .\core\models.py:54
+#: .\core\models.py:67
 msgid "Name"
-msgstr "اسم الموظف"
+msgstr "الاسم"
 
-#: .\core\models.py:55
+#: .\core\models.py:68
 msgid "Birthdate"
 msgstr "تاريخ الميلاد"
 
-#: .\core\models.py:57
+#: .\core\models.py:70
+msgid "Identification"
+msgstr "رقم البطاقة الشخصية"
+
+#: .\core\models.py:72
+msgid "Education"
+msgstr "المؤهل الدراسي"
+
+#: .\core\models.py:74
+msgid "Military Service"
+msgstr "الموقف من التجنيد"
+
+#: .\core\models.py:81
 msgid "Gender"
 msgstr "الجنس"
 
-#: .\core\models.py:60
+#: .\core\models.py:84
 msgid "Martial Status"
 msgstr "الحالة الاجتماعية"
 
-#: .\core\models.py:62
+#: .\core\models.py:86
 msgid "Home Address"
 msgstr "عنوان المنزل"
 
-#: .\core\models.py:64
+#: .\core\models.py:88
 msgid "Mobile Number"
-msgstr "رقم الموبايل"
+msgstr "رقم هاتف المحمول"
 
-#: .\core\models.py:71
+#: .\core\models.py:94
 msgid "Photo"
 msgstr "الصورة"
 
-#: .\core\models.py:78
+#: .\core\models.py:101
 msgid "Bank Name"
-msgstr "اسم البنك"
+msgstr "اسم البنك للموظف"
 
-#: .\core\models.py:79
+#: .\core\models.py:102
 msgid "Bank Branch"
-msgstr "فرع البنك"
+msgstr "عنوان البنك"
 
-#: .\core\models.py:80
+#: .\core\models.py:103
 msgid "Bank account name"
-msgstr " اسم صاحب الحساب البنكي"
+msgstr "اسم الحساب البنكي"
 
-#: .\core\models.py:81
+#: .\core\models.py:104
 msgid "Bank account number"
 msgstr "رقم الحساب البنكي"
 
-#: .\core\models.py:84
+#: .\core\models.py:107
 msgid "Start Date"
-msgstr "تاريخ الالتحاق"
+msgstr " تاريخ الالتحاق بالعمل"
 
-#: .\core\models.py:86
+#: .\core\models.py:109
 msgid "Employment Type"
 msgstr "نوع التوظيف"
 
-#: .\core\models.py:117
+#: .\core\models.py:116
+#, fuzzy
+#| msgid "Department name"
+msgid "Department Name"
+msgstr "اسم الادارة"
+
+#: .\core\models.py:124
+#, fuzzy
+#| msgid "Branch name"
+msgid "Branch Name"
+msgstr "اسم الفرع"
+
+#: .\core\models.py:129
 msgid "Position"
-msgstr "المنصب الوظيفي"
-
-#: .\core\models.py:118
-msgid "Active Status"
-msgstr "حالة نشاط الموظف"
-
-#: .\core\models.py:119
-msgid "Is Staff"
-msgstr "حالة عضوية المستخدم في النظام"
+msgstr "المنصب"
 
 #: .\core\models.py:130
+msgid "Active Status"
+msgstr "حالة نشاط المستخدم على النظام"
+
+#: .\core\models.py:131
+msgid "Is Staff"
+msgstr "حالة تقييد الموظف بالنظام"
+
+#: .\core\models.py:138
+msgid "User"
+msgstr "المستخدم"
+
+#: .\core\models.py:139
+msgid "Users"
+msgstr "المستخدمين"
+
+#: .\core\models.py:146
 msgid "Department name"
 msgstr "اسم الادارة"
 
-#: .\core\models.py:131
+#: .\core\models.py:147
 msgid "Department Details"
-msgstr "تفاصيل"
+msgstr "تفاصيل الادارة"
 
-#: .\core\models.py:144
-#, fuzzy
-#| msgid "Bank account name"
+#: .\core\models.py:150
+msgid "Department"
+msgstr "الادارة"
+
+#: .\core\models.py:151
+msgid "Departments"
+msgstr "الادارات"
+
+#: .\core\models.py:164
 msgid "Branch name"
-msgstr " اسم صاحب الحساب البنكي"
+msgstr "اسم الفرع"
 
-#: .\core\models.py:145
+#: .\core\models.py:165
 msgid "Branch address"
 msgstr "عنوان الفرع"
 
-#: .\core\models.py:146
+#: .\core\models.py:166
 msgid "Branch details"
-msgstr "تفاصيل"
+msgstr "تفاصيل الفرع"
 
-#: .\core\models.py:194
-msgid "Loan Type"
-msgstr "نوع القرض"
+#: .\core\models.py:169
+msgid "Branch"
+msgstr "الفرع"
 
-#: .\core\models.py:195
-#, fuzzy
-#| msgid "Important dates"
-msgid "Loan date"
-msgstr "التواريخ المهمة"
+#: .\core\models.py:170
+msgid "Branches"
+msgstr "الفروع"
 
-#: .\core\models.py:196 .\core\models.py:241
-msgid "Amount"
-msgstr "المبلغ"
-
-#: .\core\models.py:197
-msgid "Monthly Installment"
-msgstr "القسط الشهري"
-
-#: .\core\models.py:198
-msgid "Due"
-msgstr "الاستحقاق"
-
-#: .\core\models.py:199
-msgid "Remain"
-msgstr "المتبقي"
-
-#: .\core\models.py:200
-msgid "Action"
-msgstr "التصرف"
-
-#: .\core\models.py:201
-#, fuzzy
-#| msgid "Martial Status"
-msgid "Loan Status"
-msgstr "الحالة الاجتماعية"
-
-#: .\core\models.py:202
-#, fuzzy
-#| msgid "Position"
-msgid "Description"
-msgstr "المنصب الوظيفي"
-
-#: .\core\models.py:240
-msgid "Payment day"
-msgstr "تاريخ الدفع"
-
-#: .\core\models.py:242
-msgid "Due date"
-msgstr "تاريخ الاستحقاق"
-
-#: .\core\models.py:278
-msgid "Total loan"
-msgstr "القرض الكلي"
-
-#: .\core\models.py:279
-msgid "Deduction"
-msgstr "خصومات"
-
-#: .\core\models.py:280
-msgid "Basic Salary"
-msgstr "المرتب الاساسي"
-
-#: .\core\models.py:281
-msgid "Profit"
-msgstr "الارباح"
-
-#: .\core\models.py:282
-msgid "Tax"
-msgstr "ضرائب"
-
-#: .\core\models.py:283
-msgid "Payment date"
-msgstr "تاريخ الاستحقاق"
-
-#: .\core\models.py:284
-msgid "Net Salary"
-msgstr "صافي المرتب"
-
-#: .\core\models.py:293
-msgid "Role name"
-msgstr "اسم الرول"
-
-#: .\user\serializers.py:139
+#: .\user\serializers.py:109
 msgid "Unable to authenticate with provided credentials"
-msgstr "غير مخول لك الدخول بناء على المدخلات"
+msgstr "غير مخول لك بالدخول بناء على المدخلات"
+
+#: .\user\views.py:83 .\user\views.py:85
+msgid "email or password is invalid"
+msgstr "البريد الالكتروني او كلمة السر لم يتم ادخال احدهما"
