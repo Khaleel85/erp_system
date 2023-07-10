@@ -34,6 +34,8 @@ class UserAdmin(BaseUserAdmin):
                     "password1",
                     "password2",
                     "name",
+                    "name_ar",
+                    "name_unlang",
                     "birthdate",
                     "identification",
                     "education",

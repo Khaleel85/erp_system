@@ -19,6 +19,8 @@ class UserSerializer(serializers.ModelSerializer):
             "email",
             "password",
             "name",
+            "name_ar",
+            "name_unlang",
             "birthdate",
             "identification",
             "education",
