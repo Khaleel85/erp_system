@@ -9,7 +9,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 
-# from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
 from django.utils.translation import gettext_lazy as _
@@ -40,34 +40,48 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    EMPLOYMENT_CHOICES = [("permanent", "Permanent"), ("contract", "Contract")]
-    GENDER_CHOICES = [("male", "Male"), ("female", "Female")]
+    EMPLOYMENT_CHOICES = [("Permanent", "permanent"), ("Contract", "contract")]
+    GENDER_CHOICES = [("Male", "male"), ("Female", "female")]
     MARTIAL_STATUS_CHOICES = [
-        ("single", "Single"),
-        ("married", "Married"),
-        ("single parent", "Single Parent"),
+        ("Single", "single"),
+        ("Married", "married"),
+        ("Single Parent", "single parent"),
     ]
     MILITARY_CHOICES = [
-        ("finished military service", "Finished Military Service"),
+        ("Finished Military Service", "finished military service"),
         (
-            "temporary exemption from military service",
-            "Temporary Exempted from Military Service",
+            "Temporary Exemption from Military Service",
+            "temporary exempted from military service",
         ),
         (
-            "final exemption from military service",
             "Final Exemption from Military Service",
+            "final exemption from military service",
         ),
     ]
-    # mobile_num_regex = RegexValidator(
-    #     regex="^[0-9]{11}$", message="Entered mobile number isn't in a right format!"
-    # )
-
+    mobile_num_regex = RegexValidator(
+        regex="^[0-9]{11}$", message="Entered mobile number isn't in a right format!"
+    )
+    id_regex = RegexValidator(
+        regex="^[0-9]{14}$", message="Entered ID number isn't in a right format!"
+    )
     # user personal info
     email = models.EmailField(_("Email"), max_length=255, unique=True)
     name = models.CharField(_("Name"), max_length=255)
+    name_ar = models.CharField(_("Name Arabic"), max_length=255, blank=True, null=True)
+    name_unlang = models.CharField(
+        _("Name Unlang"), max_length=255, blank=True, null=True
+    )
     birthdate = models.DateField(_("Birthdate"), blank=True, null=True)
-    identification = models.PositiveIntegerField(
-        _("Identification"), max_length=14, unique=True, blank=True, null=True
+    # identification = models.PositiveIntegerField(
+    #     _("Identification"), max_length=14, unique=True, blank=True, null=True
+    # )
+    identification = models.CharField(
+        _("Identification"),
+        validators=[id_regex],
+        max_length=14,
+        unique=True,
+        blank=True,
+        null=True,
     )
     education = models.CharField(_("Education"), max_length=255, blank=True, null=True)
     recruitment = models.CharField(
@@ -84,11 +98,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         _("Martial Status"), choices=MARTIAL_STATUS_CHOICES, max_length=13
     )
     home_address = models.TextField(_("Home Address"))
-    mobile_number = PhoneNumberField(
+    mobile_number = models.CharField(
         _("Mobile Number"),
-        region="EG",
+        validators=[mobile_num_regex],
         unique=True,
-        max_length=13,
+        max_length=11,
         blank=True,
         null=True,
     )
