@@ -10,8 +10,6 @@ from django.contrib.auth.models import (
 )
 
 from django.core.validators import RegexValidator
-from phonenumber_field.modelfields import PhoneNumberField
-
 from django.utils.translation import gettext_lazy as _
 
 
@@ -72,9 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         _("Name Unlang"), max_length=255, blank=True, null=True
     )
     birthdate = models.DateField(_("Birthdate"), blank=True, null=True)
-    # identification = models.PositiveIntegerField(
-    #     _("Identification"), max_length=14, unique=True, blank=True, null=True
-    # )
+
     identification = models.CharField(
         _("Identification"),
         validators=[id_regex],
@@ -150,6 +146,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
 
+
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
@@ -187,3 +184,46 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# # Account models
+# class Customer(models.Model):
+#     name = models.CharField(max_length=255)
+#     # Add more fields as needed
+
+
+# class Vendor(models.Model):
+#     name = models.CharField(max_length=255)
+#     # Add more fields as needed
+
+
+# class AccountGroup(models.Model):
+#     name = models.CharField(max_length=255)
+#     parent_group = models.ForeignKey(
+#         "self",
+#         on_delete=models.CASCADE,
+#         blank=True,
+#         null=True,
+#         related_name="child_groups",
+#     )
+
+
+# class Account(models.Model):
+#     name = models.CharField(max_length=255)
+#     account_group = models.ForeignKey(
+#         AccountGroup, on_delete=models.CASCADE, related_name="accounts"
+#     )
+
+
+# class LedgerEntry(models.Model):
+#     account = models.ForeignKey(
+#         Account, on_delete=models.CASCADE, related_name="ledger_entries"
+#     )
+#     transaction_date = models.DateField(_())
+#     description = models.TextField(_())
+#     debit = models.DecimalField(_(), max_digits=12, decimal_places=2)
+#     credit = models.DecimalField(_(), max_digits=12, decimal_places=2)
+#     customer = models.ForeignKey(
+#         Customer, on_delete=models.CASCADE, blank=True, null=True
+#     )
+#     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, blank=True, null=True)

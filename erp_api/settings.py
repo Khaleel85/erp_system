@@ -42,10 +42,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "core",
     "human_resources",
+    "accounting",
     "rest_framework",
     "rest_framework_simplejwt",
     "user",
     "corsheaders",
+]
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "user.costumeBackend.EmailOrMobileBackend",
 ]
 
 REST_FRAMEWORK = {

@@ -15,6 +15,8 @@ from core.models import User
 from user.serializers import UserSerializer, UserImageSerializer
 
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q
+
 
 
 class CreateUserView(generics.CreateAPIView):
@@ -78,17 +80,42 @@ class UserView(APIView):
         return Response(serializer.data)
 
 
+# class LoginView(APIView):
+#     authentication_classes = [JWTAuthentication]
+
+#     def post(self, request):
+#         email = request.data["email"]
+#         password = request.data["password"]
+#         user = User.objects.filter(email=email).first()
+#         if user is None:
+#             raise AuthenticationFailed(_("email or password is invalid"))
+#         if not user.check_password(password):
+#             raise AuthenticationFailed(_("email or password is invalid"))
+#         refresh = RefreshToken.for_user(user)
+#         response = Response()
+#         response.data = {
+#             "email": user.email,
+#             "access_token": str(refresh.access_token),
+#             "refresh_token": str(refresh),
+#         }
+#         return response
+
 class LoginView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def post(self, request):
-        email = request.data["email"]
-        password = request.data["password"]
-        user = User.objects.filter(email=email).first()
+        identifier = request.data.get("identifier")  # Field for email or phone number
+        password = request.data.get("password")
+
+        # Filter using Q objects to match either email or phone_number
+        user = User.objects.filter(Q(email=identifier) | Q(mobile_number=identifier)).first()
+
         if user is None:
-            raise AuthenticationFailed(_("email or password is invalid"))
+            raise AuthenticationFailed(_("Email or phone number is invalid"))
+
         if not user.check_password(password):
-            raise AuthenticationFailed(_("email or password is invalid"))
+            raise AuthenticationFailed(_("Email or phone number is invalid"))
+
         refresh = RefreshToken.for_user(user)
         response = Response()
         response.data = {
