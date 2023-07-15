@@ -9,9 +9,11 @@ from django.urls import path, include
 # )
 from human_resources.views import (
     DepartmentCreateView,
+    DepartmentListView,
     DepartmentRetrieveUpdateView,
     DepartmentDeleteView,
     BranchCreateView,
+    BranchListView,
     BranchRetrieveUpdateView,
     BranchDeleteView,
 )
@@ -34,6 +36,7 @@ urlpatterns = [
     path(
         "department/create/", DepartmentCreateView.as_view(), name="department-create"
     ),
+    path("department/list/", DepartmentListView.as_view(), name="department-list"),
     path(
         "department/update/<int:pk>/",
         DepartmentRetrieveUpdateView.as_view(),
@@ -45,6 +48,7 @@ urlpatterns = [
         name="department-delete",
     ),
     path("branch/create/", BranchCreateView.as_view(), name="branch-create"),
+    path("branch/list/", BranchListView.as_view(), name="branch-list"),
     path(
         "branch/update/<int:pk>/",
         BranchRetrieveUpdateView.as_view(),
