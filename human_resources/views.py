@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -16,29 +16,75 @@ from core.models import (
 )
 
 
-class DepartmentViewSet(viewsets.ModelViewSet):
+# class DepartmentViewSet(viewsets.ModelViewSet):
+#     serializer_class = DepartmentSerializer
+#     queryset = Department.objects.all()
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     pagination_class = StandardResultsSetPagination
+
+#     def get_queryset(self):
+#         return self.queryset.order_by("id")
+
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
+
+class DepartmentCreateView(generics.CreateAPIView):
+    serializer_class= DepartmentSerializer
+    queryset=Department.objects.all()
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
+class DepartmentRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = DepartmentSerializer
     queryset = Department.objects.all()
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
 
-    def get_queryset(self):
-        return self.queryset.order_by("id")
+class DepartmentDeleteView(generics.DestroyAPIView):
+    queryset = Department.objects.all()
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+
+# class BranchViewSet(viewsets.ModelViewSet):
+#     serializer_class = BranchSerializer
+#     queryset = Branch.objects.all()
+#     authentication_classes = [JWTAuthentication]
+#     permission_classes = [IsAuthenticated]
+#     pagination_class = StandardResultsSetPagination
+
+#     def get_queryset(self):
+#         return self.queryset.order_by("id")
+
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
+class BranchCreateView(generics.CreateAPIView):
+    serializer_class= BranchSerializer
+    queryset=Branch.objects.all()
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        return serializer.save(user=self.request.user)
 
-
-class BranchViewSet(viewsets.ModelViewSet):
+class BranchRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = BranchSerializer
     queryset = Branch.objects.all()
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
 
-    def get_queryset(self):
-        return self.queryset.order_by("id")
+class BranchDeleteView(generics.DestroyAPIView):
+    queryset = Branch.objects.all()
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
