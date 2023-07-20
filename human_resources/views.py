@@ -6,7 +6,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from human_resources.serializers import (
     DepartmentSerializer,
     BranchSerializer,
-    LeaveSerializer,
+    LeaveCreateSerializer,
+    LeaveDetailSerializer,
 )
 
 from core.pagination import StandardResultsSetPagination
@@ -126,7 +127,7 @@ Leave Views
 
 class LeaveCreateView(generics.CreateAPIView):
     queryset = Leave.objects.all()
-    serializer_class = LeaveSerializer
+    serializer_class = LeaveCreateSerializer
     # authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -137,7 +138,7 @@ class LeaveCreateView(generics.CreateAPIView):
 
 class LeaveListView(generics.ListAPIView):
     queryset = Leave.objects.all()
-    serializer_class = LeaveSerializer
+    serializer_class = LeaveDetailSerializer
     # authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
@@ -145,7 +146,7 @@ class LeaveListView(generics.ListAPIView):
 
 class LeaveRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     queryset = Leave.objects.all()
-    serializer_class = LeaveSerializer
+    serializer_class = LeaveDetailSerializer
     # authentication_classes = [JWTAuthentication]
     # permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination
