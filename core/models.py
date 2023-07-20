@@ -1,16 +1,18 @@
-from django.conf import settings
-from django.contrib.auth.models import Group, Permission
 import uuid
 import os
+import datetime
+
+from django.conf import settings
+from django.contrib.auth.models import Group, Permission
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin,
 )
-
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 def employee_photo_file_path(instance, filename):
@@ -146,10 +148,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = "email"
 
-
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
+
+
+# HR Models
 
 
 class Department(models.Model):
@@ -184,6 +188,197 @@ class Branch(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class LeaveManager(models.Manager):
+    def get_queryset(self):
+        """
+        overrides objects.all()
+        return all leaves including pending or approved
+        """
+        return super().get_queryset()
+
+    def all_pending_leaves(self):
+        """
+        gets all pending leaves -> Leave.objects.all_pending_leaves()
+        """
+        return (
+            super().get_queryset().filter(status="pending").order_by("-created")
+        )  # applying FIFO
+
+    def all_cancel_leaves(self):
+        return super().get_queryset().filter(status="cancelled").order_by("-created")
+
+    def all_rejected_leaves(self):
+        return super().get_queryset().filter(status="rejected").order_by("-created")
+
+    def all_approved_leaves(self):
+        """
+        gets all approved leaves -> Leave.objects.all_approved_leaves()
+        """
+        return super().get_queryset().filter(status="approved")
+
+    def current_year_leaves(self):
+        """
+        returns all leaves in current year; Leave.objects.all_leaves_current_year()
+        or add all_leaves_current_year().count() -> int total
+        this include leave approved,pending,rejected,cancelled
+
+        """
+        return super().get_queryset().filter(startdate__year=datetime.date.today().year)
+
+
+class Leave(models.Model):
+    LEAVE_TYPE = (
+        ("SICK", "Sick Leave"),
+        ("CASUAL", "Casual Leave"),
+        ("EMERGENCY", "Emergency Leave"),
+        ("STUDY", "Study Leave"),
+    )
+    STATUS_CHOICES = (
+        ("Pending", "Pending"),
+        ("Approved", "Approved"),
+        ("Rejected", "Rejected"),
+        ("Canceled", "Canceled"),
+    )
+    DAYS = 30
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    startdate = models.DateField(
+        _("Start Date"),
+        help_text=_("leave start date is on .."),
+        null=True,
+        blank=False,
+    )
+    enddate = models.DateField(
+        _("End Date"),
+        help_text=_("coming back on ..."),
+        null=True,
+        blank=False,
+    )
+    leavetype = models.CharField(
+        choices=LEAVE_TYPE, max_length=25, default="SICK", null=True, blank=False
+    )
+    reason = models.TextField(
+        _("Reason for Leave"),
+        max_length=255,
+        help_text=_("add additional information for leave"),
+        null=True,
+        blank=True,
+    )
+    defaultdays = models.PositiveIntegerField(
+        _("Leave days per year counter"),
+        default=DAYS,
+        null=True,
+        blank=True,
+    )
+
+    # hrcomments = models.ForeignKey('CommentLeave') #hide
+
+    status = models.CharField(
+        max_length=12, choices=STATUS_CHOICES, default="pending"
+    )
+    is_approved = models.BooleanField(default=False)  # hide
+
+    created = models.DateTimeField(auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    objects = LeaveManager()
+
+    def leave_days(self):
+        startdate = self.startdate
+        enddate = self.enddate
+        if startdate > enddate:
+            raise ValueError("Start date cannot be greater than end date.")
+        else:
+            dates = (enddate - startdate).days
+        return dates
+
+    class Meta:
+        verbose_name = _("Leave")
+        verbose_name_plural = _("Leaves")
+        ordering = ["-created"]  # recent objects
+
+    def __str__(self):
+        return "{0} - {1}".format(self.leavetype, self.user)
+
+
+
+    @property
+    def leave_days(self):
+        startdate = self.startdate
+        enddate = self.enddate
+        if startdate and enddate:
+            return (enddate - startdate).days + 1
+        return 0
+    @property
+    def leave_approved(self):
+        return self.is_approved == True
+
+    @property
+    def approve_leave(self):
+        if not self.is_approved:
+            self.is_approved = True
+            self.status = "approved"
+            self.save()
+
+    @property
+    def unapprove_leave(self):
+        if self.is_approved:
+            self.is_approved = False
+            self.status = "pending"
+            self.save()
+
+    @property
+    def leaves_cancel(self):
+        if self.is_approved or not self.is_approved:
+            self.is_approved = False
+            self.status = "cancelled"
+            self.save()
+
+    # def uncancel_leave(self):
+    # 	if  self.is_approved or not self.is_approved:
+    # 		self.is_approved = False
+    # 		self.status = 'pending'
+    # 		self.save()
+
+    @property
+    def reject_leave(self):
+        if self.is_approved or not self.is_approved:
+            self.is_approved = False
+            self.status = "rejected"
+            self.save()
+
+    @property
+    def is_rejected(self):
+        return self.status == "rejected"
+
+
+
+
+
+
+# def save(self,*args,**kwargs):
+# 	data = self.defaultdays
+# 	days_left = data - self.leave_days
+# 	self.defaultdays = days_left
+# 	super().save(*args,**kwargs)
+
+
+# class Comment(models.Model):
+# 	leave = models.ForeignKey(Leave,on_delete=models.CASCADE,null=True,blank=True)
+# 	comment = models.CharField(max_length=255,null=True,blank=True)
+
+# 	updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+# 	created = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+
+# 	def __str__(self):
+# 		return self.leave
 
 
 # # Account models

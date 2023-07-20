@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-07 13:46+0300\n"
+"POT-Creation-Date: 2023-07-20 15:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,146 +27,192 @@ msgstr "الصلاحيات"
 msgid "Important dates"
 msgstr "التواريخ المهمة"
 
-#: .\core\models.py:66
+#: .\core\models.py:68
 msgid "Email"
 msgstr "البريد الالكتروني"
 
-#: .\core\models.py:67
+#: .\core\models.py:69
 msgid "Name"
 msgstr "الاسم"
 
-#: .\core\models.py:68
+#: .\core\models.py:70
+msgid "Name Arabic"
+msgstr "الاسم بالعربي"
+
+#: .\core\models.py:72
+msgid "Name Unlang"
+msgstr "الاسم بلغة اخرى"
+
+#: .\core\models.py:74
 msgid "Birthdate"
 msgstr "تاريخ الميلاد"
 
-#: .\core\models.py:70
+#: .\core\models.py:77
 msgid "Identification"
 msgstr "رقم البطاقة الشخصية"
 
-#: .\core\models.py:72
+#: .\core\models.py:84
 msgid "Education"
 msgstr "المؤهل الدراسي"
 
-#: .\core\models.py:74
+#: .\core\models.py:86
 msgid "Military Service"
 msgstr "الموقف من التجنيد"
 
-#: .\core\models.py:81
+#: .\core\models.py:93
 msgid "Gender"
 msgstr "الجنس"
 
-#: .\core\models.py:84
+#: .\core\models.py:96
 msgid "Martial Status"
 msgstr "الحالة الاجتماعية"
 
-#: .\core\models.py:86
+#: .\core\models.py:98
 msgid "Home Address"
 msgstr "عنوان المنزل"
 
-#: .\core\models.py:88
+#: .\core\models.py:100
 msgid "Mobile Number"
 msgstr "رقم هاتف المحمول"
 
-#: .\core\models.py:94
+#: .\core\models.py:108
 msgid "Photo"
 msgstr "الصورة"
 
-#: .\core\models.py:101
+#: .\core\models.py:115
 msgid "Bank Name"
 msgstr "اسم البنك للموظف"
 
-#: .\core\models.py:102
+#: .\core\models.py:116
 msgid "Bank Branch"
 msgstr "عنوان البنك"
 
-#: .\core\models.py:103
+#: .\core\models.py:117
 msgid "Bank account name"
 msgstr "اسم الحساب البنكي"
 
-#: .\core\models.py:104
+#: .\core\models.py:118
 msgid "Bank account number"
 msgstr "رقم الحساب البنكي"
 
-#: .\core\models.py:107
+#: .\core\models.py:121 .\core\models.py:252
 msgid "Start Date"
 msgstr " تاريخ الالتحاق بالعمل"
 
-#: .\core\models.py:109
+#: .\core\models.py:123
 msgid "Employment Type"
 msgstr "نوع التوظيف"
 
-#: .\core\models.py:116
+#: .\core\models.py:130
 #, fuzzy
 #| msgid "Department name"
 msgid "Department Name"
 msgstr "اسم الادارة"
 
-#: .\core\models.py:124
+#: .\core\models.py:138
 #, fuzzy
 #| msgid "Branch name"
 msgid "Branch Name"
 msgstr "اسم الفرع"
 
-#: .\core\models.py:129
+#: .\core\models.py:143
 msgid "Position"
 msgstr "المنصب"
 
-#: .\core\models.py:130
+#: .\core\models.py:144
 msgid "Active Status"
 msgstr "حالة نشاط المستخدم على النظام"
 
-#: .\core\models.py:131
+#: .\core\models.py:145
 msgid "Is Staff"
 msgstr "حالة تقييد الموظف بالنظام"
 
-#: .\core\models.py:138
+#: .\core\models.py:152
 msgid "User"
 msgstr "المستخدم"
 
-#: .\core\models.py:139
+#: .\core\models.py:153
 msgid "Users"
 msgstr "المستخدمين"
 
-#: .\core\models.py:146
+#: .\core\models.py:163
 msgid "Department name"
 msgstr "اسم الادارة"
 
-#: .\core\models.py:147
+#: .\core\models.py:164
 msgid "Department Details"
 msgstr "تفاصيل الادارة"
 
-#: .\core\models.py:150
+#: .\core\models.py:167
 msgid "Department"
 msgstr "الادارة"
 
-#: .\core\models.py:151
+#: .\core\models.py:168
 msgid "Departments"
 msgstr "الادارات"
 
-#: .\core\models.py:164
+#: .\core\models.py:181
 msgid "Branch name"
 msgstr "اسم الفرع"
 
-#: .\core\models.py:165
+#: .\core\models.py:182
 msgid "Branch address"
 msgstr "عنوان الفرع"
 
-#: .\core\models.py:166
+#: .\core\models.py:183
 msgid "Branch details"
 msgstr "تفاصيل الفرع"
 
-#: .\core\models.py:169
+#: .\core\models.py:186
 msgid "Branch"
 msgstr "الفرع"
 
-#: .\core\models.py:170
+#: .\core\models.py:187
 msgid "Branches"
 msgstr "الفروع"
 
-#: .\user\serializers.py:109
+#: .\core\models.py:253
+msgid "leave start date is on .."
+msgstr " الغياب يبدأ في.."
+
+#: .\core\models.py:258
+msgid "End Date"
+msgstr "الغياب ينتهي في .."
+
+#: .\core\models.py:259
+msgid "coming back on ..."
+msgstr "العودة يوم .."
+
+#: .\core\models.py:267
+msgid "Reason for Leave"
+msgstr "السبب في الغياب "
+
+#: .\core\models.py:269
+msgid "add additional information for leave"
+msgstr "اضافة تفاصيل اكثر عن الغياب"
+
+#: .\core\models.py:274
+msgid "Leave days per year counter"
+msgstr "ايام الغياب في السنة"
+
+#: .\core\models.py:302
+msgid "Leave"
+msgstr "الغياب"
+
+#: .\core\models.py:303
+msgid "Leaves"
+msgstr "الغيابات"
+
+#: .\human_resources\serializers.py:36
+msgid "Start date cannot be greater than end date."
+msgstr "يوم البدء لا يجوز ان يكون اكبر من يوم الانتهاء"
+
+#: .\user\serializers.py:116
 msgid "Unable to authenticate with provided credentials"
 msgstr "غير مخول لك بالدخول بناء على المدخلات"
 
-#: .\user\views.py:83 .\user\views.py:85
-msgid "email or password is invalid"
+#: .\user\views.py:114 .\user\views.py:117
+#, fuzzy
+#| msgid "email or password is invalid"
+msgid "Email or phone number is invalid"
 msgstr "البريد الالكتروني او كلمة السر لم يتم ادخال احدهما"

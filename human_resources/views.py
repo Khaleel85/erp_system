@@ -6,14 +6,19 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from human_resources.serializers import (
     DepartmentSerializer,
     BranchSerializer,
+    LeaveSerializer,
 )
 
 from core.pagination import StandardResultsSetPagination
 from core.models import (
     Department,
     Branch,
+    Leave,
 )
 
+"""
+Department Views
+"""
 
 # class DepartmentViewSet(viewsets.ModelViewSet):
 #     serializer_class = DepartmentSerializer
@@ -63,6 +68,10 @@ class DepartmentDeleteView(generics.DestroyAPIView):
     pagination_class = StandardResultsSetPagination
 
 
+"""
+Branch Views
+"""
+
 # class BranchViewSet(viewsets.ModelViewSet):
 #     serializer_class = BranchSerializer
 #     queryset = Branch.objects.all()
@@ -107,4 +116,43 @@ class BranchDeleteView(generics.DestroyAPIView):
     queryset = Branch.objects.all()
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+
+"""
+Leave Views
+"""
+
+
+class LeaveCreateView(generics.CreateAPIView):
+    queryset = Leave.objects.all()
+    serializer_class = LeaveSerializer
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
+
+class LeaveListView(generics.ListAPIView):
+    queryset = Leave.objects.all()
+    serializer_class = LeaveSerializer
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+
+class LeaveRetrieveUpdateView(generics.RetrieveUpdateAPIView):
+    queryset = Leave.objects.all()
+    serializer_class = LeaveSerializer
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
+    pagination_class = StandardResultsSetPagination
+
+
+class LeaveDeleteView(generics.DestroyAPIView):
+    queryset = Leave.objects.all()
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
     pagination_class = StandardResultsSetPagination

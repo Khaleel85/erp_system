@@ -12,10 +12,18 @@ from human_resources.views import (
     DepartmentListView,
     DepartmentRetrieveUpdateView,
     DepartmentDeleteView,
+)
+from human_resources.views import (
     BranchCreateView,
     BranchListView,
     BranchRetrieveUpdateView,
     BranchDeleteView,
+)
+from human_resources.views import (
+    LeaveCreateView,
+    LeaveListView,
+    LeaveRetrieveUpdateView,
+    LeaveDeleteView,
 )
 
 # router = DefaultRouter()
@@ -55,4 +63,12 @@ urlpatterns = [
         name="branch-retrieve-update",
     ),
     path("branch/delete/<int:pk>/", BranchDeleteView.as_view(), name="branch-delete"),
+    path("leave/create/", LeaveCreateView.as_view(), name="leave-create"),
+    path("leave/list/", LeaveListView.as_view(), name="leave-list"),
+    path(
+        "leave/update/<int:pk>/",
+        LeaveRetrieveUpdateView.as_view(),
+        name="leave-retrieve-update",
+    ),
+    path("leave/delete/<int:pk>/", LeaveDeleteView.as_view(), name="Leave-delete"),
 ]
